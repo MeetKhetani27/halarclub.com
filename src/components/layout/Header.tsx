@@ -33,7 +33,12 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4 h-full flex items-center justify-between">
-        <Link to="/" className="flex-shrink-0 flex items-center h-full py-2" state={{ skipPreloader: true }}>
+        <Link 
+          to="/" 
+          className="flex-shrink-0 flex items-center h-full py-2" 
+          state={{ skipPreloader: true }}
+          replace
+        >
           <img src="/LOGO.png" alt="Halar Club Logo" className="h-90 w-auto max-h-full" />
         </Link>
 
