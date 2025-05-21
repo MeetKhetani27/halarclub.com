@@ -28,11 +28,10 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors">About Us</Link></li>
-              <li><Link to="/packages" className="text-gray-300 hover:text-white transition-colors">Packages</Link></li>
-              <li><Link to="/safari" className="text-gray-300 hover:text-white transition-colors">Safari</Link></li>
-              <li><Link to="/membership" className="text-gray-300 hover:text-white transition-colors">Membership</Link></li>
+              <li><Link to="/" className="text-gray-300 hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/about" className="text-gray-300 hover:text-white transition-colors">About</Link></li>
               <li><Link to="/gallery" className="text-gray-300 hover:text-white transition-colors">Gallery</Link></li>
+              <li><Link to="/contact" className="text-gray-300 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
           
@@ -45,11 +44,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="mr-2 flex-shrink-0" />
-                <span>+91 98765 43210</span>
+                <a href="tel:+919876543210" className="hover:text-primary-300 transition-colors">+91 98765 43210</a>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="mr-2 flex-shrink-0" />
-                <span>info@halarclub.com</span>
+                <a href="mailto:info@halarclub.com" className="hover:text-primary-300 transition-colors">info@halarclub.com</a>
               </li>
             </ul>
           </div>
