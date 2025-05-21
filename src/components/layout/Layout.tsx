@@ -1,10 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Preloader from '../ui/Preloader';
 
 const Layout = () => {
+  const [showPreloader] = useState(() => {
+    const hasLoaded = sessionStorage.getItem('hasLoaded');
+    if (!hasLoaded) {
+      sessionStorage.setItem('hasLoaded', 'true');
+      return true;
+    }
+    return false;
+  });
+
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
@@ -30,7 +39,7 @@ const Layout = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Preloader />
+      {showPreloader && <Preloader />}
       <Header />
       <main className="flex-grow">
         <Outlet />
