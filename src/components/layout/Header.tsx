@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', path: '/' },
@@ -33,7 +33,7 @@ const Header = () => {
       }`}
     >
       <div className="container mx-auto px-4 h-full flex items-center justify-between">
-        <Link to="/" className="flex-shrink-0 flex items-center h-full py-2">
+        <Link to="/" className="flex-shrink-0 flex items-center h-full py-2" state={{ skipPreloader: true }}>
           <img src="/LOGO.png" alt="Halar Club Logo" className="h-90 w-auto max-h-full" />
         </Link>
 

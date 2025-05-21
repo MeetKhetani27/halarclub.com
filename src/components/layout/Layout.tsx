@@ -5,14 +5,23 @@ import Footer from './Footer';
 import Preloader from '../ui/Preloader';
 
 const Layout = () => {
-  const [showPreloader] = useState(() => {
-    const hasLoaded = sessionStorage.getItem('hasLoaded');
+  const [showPreloader, setShowPreloader] = useState(() => {
+    const hasLoaded = localStorage.getItem('hasLoaded');
     if (!hasLoaded) {
-      sessionStorage.setItem('hasLoaded', 'true');
+      localStorage.setItem('hasLoaded', 'true');
       return true;
     }
     return false;
   });
+
+  useEffect(() => {
+    if (showPreloader) {
+      const timer = setTimeout(() => {
+        setShowPreloader(false);
+      }, 2500); // Total duration of preloader (1.5s delay + 1s fade)
+      return () => clearTimeout(timer);
+    }
+  }, [showPreloader]);
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
