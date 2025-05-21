@@ -1,33 +1,18 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Preloader from '../ui/Preloader';
 
 const Layout = () => {
-  const location = useLocation();
-  const [showPreloader, setShowPreloader] = useState(() => {
-    // Don't show preloader if navigating from logo click
-    if (location.state && location.state.skipPreloader) {
-      return false;
-    }
-    // Show preloader only on first visit
-    const hasLoaded = localStorage.getItem('hasLoaded');
+  const [showPreloader] = useState(() => {
+    const hasLoaded = sessionStorage.getItem('hasLoaded');
     if (!hasLoaded) {
-      localStorage.setItem('hasLoaded', 'true');
+      sessionStorage.setItem('hasLoaded', 'true');
       return true;
     }
     return false;
   });
-
-  useEffect(() => {
-    if (showPreloader) {
-      const timer = setTimeout(() => {
-        setShowPreloader(false);
-      }, 2500); // Total duration of preloader (1.5s delay + 1s fade)
-      return () => clearTimeout(timer);
-    }
-  }, [showPreloader]);
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
