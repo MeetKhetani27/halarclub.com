@@ -34,7 +34,7 @@ const ContactPage = () => {
       <Hero
         title="Contact Us"
         subtitle="Get in touch with us for any inquiries or to schedule a visit"
-        image="/contact-hero.png"
+        image="/3.png"
       />
       
       <section className="section bg-white">
