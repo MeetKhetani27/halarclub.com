@@ -10,19 +10,29 @@ const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
   const [fadeOut, setFadeOut] = useState(false);
 
   useEffect(() => {
-    // Start fade out after a delay
-    const fadeOutTimer = setTimeout(() => {
-      setFadeOut(true);
-      // Remove preloader after fade animation
-      const removeTimer = setTimeout(() => {
+    const loadImage = async () => {
+      try {
+        const img = new Image();
+        img.src = '/LOGO.png';
+        await img.decode();
+        
+        // Start fade out after image loads
+        const timer = setTimeout(() => {
+          setFadeOut(true);
+          setTimeout(() => {
+            setIsLoading(false);
+            onComplete?.();
+          }, 1000); // Match this with CSS transition duration
+        }, 1500); // Show preloader for at least 1.5s
+
+        return () => clearTimeout(timer);
+      } catch (error) {
+        console.error('Failed to load logo:', error);
         setIsLoading(false);
-        onComplete?.();
-      }, 1000); // Match this with CSS transition duration
+      }
+    };
 
-      return () => clearTimeout(removeTimer);
-    }, 1500); // Show preloader for at least 1.5s
-
-    return () => clearTimeout(fadeOutTimer);
+    loadImage();
   }, [onComplete]);
 
   if (!isLoading) return null;

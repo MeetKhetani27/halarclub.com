@@ -5,14 +5,16 @@ import Footer from './Footer';
 import Preloader from '../ui/Preloader';
 
 const Layout = () => {
-  const [showPreloader] = useState(() => {
+  const [showPreloader, setShowPreloader] = useState(true);
+
+  useEffect(() => {
     const hasLoaded = sessionStorage.getItem('hasLoaded');
-    if (!hasLoaded) {
+    if (hasLoaded) {
+      setShowPreloader(false);
+    } else {
       sessionStorage.setItem('hasLoaded', 'true');
-      return true;
     }
-    return false;
-  });
+  }, []);
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
